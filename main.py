@@ -1,6 +1,6 @@
-from d2t import D2T
+from dtt import DTT
 
 if __name__ == "__main__":
-    d2t = D2T()
-    l = d2t.dir_to_list("test")
-    d2t.list_to_txt("test.txt", l, "")
+    dtt = DTT()
+    l = dtt.dir_to_list("test", "fe")
+    dtt.list_to_txt("test.txt", l)
