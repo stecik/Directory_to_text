@@ -1,11 +1,12 @@
 # Directory to Text (D2T)
-WORK IN PROGRESS --- Simple CLI program which generates .txt file with a list of all files and subdirectories of given directory.
+WORK IN PROGRESS --- Simple CLI program (Windows only) which generates .txt file with a list of all files and subdirectories of given directory.
 
 # Example commands
 dtt input_directory(default = current directory) output_file.txt switches(-id) depth(default = 0)",
 dtt list.txt -f 3
 dtt C:\Users\directory list.txt -id
 dtt list.txt
+dtt -help
 
 # Default behaviour
 Returns unformated .txt file with a list of all filenames and subdirectories including files inside them starting from given directory
@@ -19,6 +20,8 @@ Returns unformated .txt file with a list of all filenames and subdirectories inc
 -u = Duplicit names are included only once (if combined with -e ignores file types)
 -a = Ignore specified file extensions
 -b = Return only specified file extensions
+
+-help = shows all switches and examples above
 
 # Requirements
 lorem ipsum
