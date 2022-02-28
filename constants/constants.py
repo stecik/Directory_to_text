@@ -5,12 +5,14 @@ DEFAULT_BEHAVIOUR = "Returns unformated .txt file with a list of all filenames a
 EXAMPLES = [r"dtt input_directory(default = current directory) output_file.txt switches(-id) depth(default = 0)",
                     r"dtt list.txt -f 3",
                     r"dtt C:\Users\directory list.txt -id",
-                    r"dtt list.txt"]
+                    r"dtt list.txt",
+                    "dtt -help"
+            ]
 SWITCHES = ["-g = Ignore files in subdirectories",
             "-d = Return only names of directorie",
             "-f = Return only names of all files",
             "-i = Return formated list",
             "-e = Do not include file extensions in filenames",
-            "-u = Duplicit names are included only once (if combined with -e ignores file types)"
+            "-u = Duplicit names are included only once (if combined with -e ignores file types)",
             "-a = Ignore specified file extensions",
             "-b = Return only specified file extensions"]
