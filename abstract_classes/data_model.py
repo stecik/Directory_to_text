@@ -2,9 +2,9 @@ from abc import ABC
 
 class DataModel(ABC):
 
-    def __init__(self, name):
+    def __init__(self, name, type):
         self._name = name
-        self._type = None
+        self._type = type
 
     @property
     def name(self):
