@@ -16,3 +16,5 @@ SWITCHES = ["-g = Ignore files in subdirectories",
             "-u = Duplicit names are included only once (if combined with -e ignores file types)",
             "-a = Ignore specified file extensions",
             "-b = Return only specified file extensions"]
+
+INDENTATION_SYMBOL = "---"

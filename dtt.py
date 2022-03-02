@@ -1,71 +1,49 @@
 import os
-from datastructures import File, Directory
-from constants import EXAMPLES, SWITCHES
+from constants import EXAMPLES, SWITCHES, INDENTATION_SYMBOL
 
 class DTT:
 
-    def __init__(self):
-        pass
-
     def dir_to_list(self, path, switches):
         list_of_names = []
-        unique_list = []
-        indentation = "---"
+        root_length = self._get_root_length(path)
+
+        # Walks through every subdirectory and file and adds them to list_of_names
+        # if they pass conditions specified in switches
         for root, dirs, files in os.walk(path):
-            # i - checks whether format is required
-            if "i" in switches:
-                length = len(root.strip().split(os.sep)) - 1
+            # Depth of current directory
+            # Used for format
+            length = len(root.strip().split(os.sep)) - root_length
             # f - files only, directories are ignored
             if "f" not in switches:
+                # Gets directory name
                 dir_name = os.path.basename(root)
-                if "u" in switches:
-                    if dir_name not in unique_list:
-                        unique_list.append(dir_name)
-                        # i - checks whether format is required
-                        if "i" in switches:
-                            list_of_names.append(indentation * length)
-                        list_of_names.append(Directory(dir_name))
-                else:
-                    # i - checks whether format is required
-                    if "i" in switches:
-                        list_of_names.append(indentation * length)
-                    list_of_names.append(Directory(dir_name))
+                list_of_names = self._add_to_list(dir_name, list_of_names, switches, length)
             # d - directories only, files are ignored
             if "d" not in switches:
                 for file in files:
-                    # i - checks whether format is required
-                    if "i" in switches:
-                        list_of_names.append(indentation * (length + 1))
                     # e - file extensions are required
-                    if "e" in switches:
-                        if "u" in switches:
-                            if file not in unique_list:
-                                unique_list.append(file)
-                                list_of_names.append(File(file))
-                        else:
-                            list_of_names.append(File(file))
+                    if "e" not in switches:
+                        filename, ext = self._separate_file_extension(file)
                     else:
-                        name, ext = self.separate_file_extension(file)
-                        if "u" in switches:
-                            if name not in unique_list:
-                                unique_list.append(name)
-                                list_of_names.append(File(name))
-                        else:
-                            list_of_names.append(File(name))
+                        filename = file
+                    list_of_names = self._add_to_list(filename, list_of_names, switches, length+1)
+        # a - list is sorted aphanumerically
         if "a" in switches and "i" not in switches:
             return sorted(list_of_names)
         return list_of_names
 
+
     def list_to_txt(self, filename, l):
+        # Writes each item of given list to a new line of filename.txt file
         with open(filename, "w", encoding="utf8") as f:
             for item in l:
-                if type(item) == type("-"):
-                    f.write(item)
-                else:
-                    f.write(item.name)
+                f.write(item)
+                if self._check_item(item):
                     f.write("\n")
 
-    def separate_file_extension(self, filename):
+
+    def _separate_file_extension(self, filename):
+        # Returns separated filename and file extension
         extension = ""
         i = 1
         symbol = filename[-i]
@@ -75,6 +53,43 @@ class DTT:
             symbol = filename[-i]
         name = filename[:len(filename) - i]
         return name, extension
+
+
+    def _check_item(self, filename):
+        # Checks if item is not INDENTATION_SYMBOL
+        for symbol in filename:
+            if symbol not in INDENTATION_SYMBOL:
+                return True
+        return False
+
+
+    def _get_root_length(self, root):
+        base = os.path.basename(root)
+        path_split = root.strip().split(os.sep)
+        length = 0
+        for dir in path_split:
+            length += 1
+            if base == dir:
+                return length
+
+
+    def _add_to_list(self, name, l, switches, length):
+        # u - check whether uniqueness is required
+        if "u" in switches:
+            if name not in l:
+                l = self._check_format(name, l, switches, length)
+        else:
+            l = self._check_format(name, l, switches, length)
+        return l
+
+
+    def _check_format(self, name, l, switches, length):
+        # i - checks whether format is required
+        if "i" in switches:
+            l.append(INDENTATION_SYMBOL * length)
+        l.append(name)
+        return l
+
 
 
 
