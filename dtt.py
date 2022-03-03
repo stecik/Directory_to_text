@@ -1,5 +1,5 @@
 import os
-from constants import EXAMPLES, SWITCHES, INDENTATION_SYMBOL
+from constants import INDENTATION_SYMBOL
 
 class DTT:
 
@@ -23,10 +23,12 @@ class DTT:
                     # Compare depth with required depth
                     if switches.length > 0 and length == switches.length:
                         break
+                    filename, ext = self._separate_file_extension(file)
+                    if self._check_exclude_include(switches, ext):
+                        continue
                     # extension - file extensions are required
-                    if not switches.extension and self._check_file_for_separation(file):
-                        filename, ext = self._separate_file_extension(file)
-                    else:
+                    if switches.extension:
+                        # validate included and excluded extensions
                         filename = file
                     list_of_names = self._add_to_list(filename, list_of_names, switches, length+1)
 
@@ -47,6 +49,9 @@ class DTT:
 
     def _separate_file_extension(self, filename):
         # Returns separated filename and file extension
+        if filename.startswith(".") or "." not in filename:
+            return filename, None
+
         extension = ""
         i = 1
         symbol = filename[-i]
@@ -55,7 +60,7 @@ class DTT:
             i += 1
             symbol = filename[-i]
         name = filename[:len(filename) - i]
-        return name, extension
+        return name, extension[::-1]
 
 
     def _check_item(self, filename):
@@ -93,16 +98,16 @@ class DTT:
         l.append(name)
         return l
 
-    def _check_file_for_separation(self, filename):
-        if filename.startswith("."):
-            return False
-        if "." not in filename:
-            return False
-        return True
 
-    def _check_depth(self, length, cd):
-        pass
-
-
-
-
+    def _check_exclude_include(self, switches, ext):
+        if switches.exclude and ext:
+            if ext not in switches.exclude:
+                return False
+            else:
+                return True
+        elif switches.include and ext:
+            if ext in switches.include:
+                return False
+            else:
+                return True
+        return None
