@@ -1,30 +1,33 @@
 # Directory to Text (D2T)
 WORK IN PROGRESS --- Simple CLI program (Windows only) which generates .txt file with a list of all files and subdirectories of given directory.
 
-# Example commands
-dtt input_directory(default = current directory) output_file.txt switches(-id) depth(default = 0)",
-dtt list.txt -f 3
-dtt C:\Users\directory list.txt -id
-dtt list.txt
-dtt -help
+# Usage
+dtt [-h] [-D] [-f] [-d] [-u] [-e] [-L] [-i | -s] [-E EXCLUDE | -I INCLUDE] output_file
+dtt output.txt -D "C:\Users\directory" -fes -I mkv;avi -L 3
 
 # Default behaviour
-Returns unformated .txt file with a list of all filenames and subdirectories including files inside them starting from given directory
+Returns unformated .txt file with a list of file names (without file extensions) and subdirectories including files inside them starting from current directory
+dtt output.txt
 
 # Switches
--g = Ignore files in subdirectories
--d = Return only names of directorie
--f = Return only names of all files
--i = Return formated list
--e = Do not include file extensions in filenames
--u = Duplicit names are included only once (if combined with -e ignores file types)
--a = Ignore specified file extensions
--b = Return only specified file extensions
+-D --directory - Specify target directory
+-f, --filesonly - Returns only names of files
+-d, --dirsonly - Returns only names of directorie
+-u, --unique - Duplicit names are included only once (if combined with -e ignores file types)
+-e, --extension - Include file extensions in filenames
 
--help = shows all switches and examples above
+-L, --length - Specify depth of a search
+
+-i", --indent - Returns formated list with indentation
+-s", --sort - Returns alphanumerically sorted list
+
+-E, --exclude - Excludes specified file extensions - separate by ';' [-E jpg;png]
+-I, --include - Includes only specified file extensions - separate by ';' [-I jpg;png]
+
+-h, --help - Show help message
 
 # Requirements
-lorem ipsum
+Python 3
 
 # How to install
 lorem ipsum
