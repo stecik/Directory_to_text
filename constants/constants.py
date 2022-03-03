@@ -1,6 +1,6 @@
 PROGRAM_NAME = "Directory to Text"
 PROGRAM_SHORTCUT = "dtt"
-DESCRIPTION = ""
+DESCRIPTION = "Write directory structure into .txt file"
 DEFAULT_BEHAVIOUR = "Returns unformated .txt file with a list of all filenames and subdirectories including files inside them starting from given directory"
 EXAMPLES = [r"dtt input_directory(default = current directory) output_file.txt switches(-id) depth(default = 0)",
                     r"dtt list.txt -f 3",
@@ -8,8 +8,7 @@ EXAMPLES = [r"dtt input_directory(default = current directory) output_file.txt s
                     r"dtt list.txt",
                     "dtt -help"
             ]
-SWITCHES = ["-g = Ignore files in subdirectories",
-            "-d = Return only names of directorie",
+SWITCHES = ["-d = Return only names of directorie",
             "-f = Return only names of all files",
             "-i = Return formated list",
             "-e = Do not include file extensions in filenames",

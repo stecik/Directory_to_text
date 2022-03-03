@@ -28,7 +28,7 @@ class DTT:
                         filename = file
                     list_of_names = self._add_to_list(filename, list_of_names, switches, length+1)
         # a - list is sorted aphanumerically
-        if "a" in switches and "i" not in switches:
+        if "s" in switches and "i" not in switches:
             return sorted(list_of_names)
         return list_of_names
 
