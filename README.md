@@ -69,13 +69,5 @@ dtt output.txt
 3. Open terminal
 4. Navigate to folder dtt (cd path)
 5. Run command python dtt.py [-h] [-D] [-f] [-d] [-u] [-e] [-L] [-i | -s] [-E EXCLUDE | -I INCLUDE] output_file
-
-#### Option 2 (Python 3 not required)
-1. Download repository
-2. Delete folder DTT_files (only required for option 1)
-3. Navigate to /usr/sbin/dtt and copy dtt there (DTT\exe_files\Linux\dtt)
-4. Open terminal
-5. Run command dtt [-h] [-D] [-f] [-d] [-u] [-e] [-L] [-i | -s] [-E EXCLUDE | -I INCLUDE] output_file
-6. If not working, run command sudo chmod 777 /usr/sbin/dtt
 ## Licence
 Feel free to use/edit my software in any way possible for **_non-commercial_** purposes.
