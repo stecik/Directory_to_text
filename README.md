@@ -1,4 +1,4 @@
-# Directory to Text (D2T)
+# Directory to Text (DTT)
 Simple CLI program which generates .txt file with a list of all files and subdirectories of given directory.
 
 ## Usage
