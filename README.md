@@ -65,7 +65,7 @@ dtt output.txt
 ### Linux
 #### Option 1 (Python 3 required)
 1. Download repository
-2. Delete folder exe_files (only required for option 2)
+2. Delete folder exe_files
 3. Open terminal
 4. Navigate to folder dtt (cd path)
 5. Run command python dtt.py [-h] [-D] [-f] [-d] [-u] [-e] [-L] [-i | -s] [-E EXCLUDE | -I INCLUDE] output_file
