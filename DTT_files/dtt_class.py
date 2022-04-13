@@ -45,14 +45,11 @@ class DTT:
 
     def list_to_txt(self, filename, l):
         # Writes each item of given list to a new line of filename.txt file
-        try:
-            with open(filename, "w", encoding="utf8") as f:
-                for item in l:
-                    f.write(item)
-                    if self._check_item(item):
-                        f.write("\n")
-        except:
-            print("Error")
+        with open(filename, "w", encoding="utf8") as f:
+            for item in l:
+                f.write(item)
+                if self._check_item(item):
+                    f.write("\n")
 
 
     def _separate_file_extension(self, filename):
