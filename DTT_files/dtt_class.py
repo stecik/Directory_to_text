@@ -14,18 +14,23 @@ class DTT:
             # Used for format
             length = len(root.strip().split(os.sep)) - root_length
             # filesonly - files only, directories are ignored
-            if not switches.filesonly:
-                # Gets directory name
-                dir_name = os.path.basename(root)
-                list_of_names = self._add_to_list(dir_name, list_of_names, switches, length)
+            # Compare depth with required depth
+            # 0 - is for no limitation
 
-            # dirsonly - directories only, files are ignored
+            if switches.length > 0 and length > switches.length:
+                continue
+
+            if not switches.filesonly:
+                    # Gets directory name
+                    dir_name = os.path.basename(root)
+                    list_of_names = self._add_to_list(dir_name, list_of_names, switches, length)
+
+            if switches.length > 0 and length > switches.length - 1:
+                continue
+
+                # dirsonly - directories only, files are ignored
             if not switches.dirsonly:
                 for file in files:
-                    # Compare depth with required depth
-                    # 0 - is for no limitation
-                    if switches.length > 0 and length == switches.length:
-                        break
                     # Separate file name and extension
                     filename, ext = self._separate_file_extension(file)
                     # Check whether any extensions are to be excluded or included
